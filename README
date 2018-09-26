@@ -1,0 +1,26 @@
+meta stuff for vim-meson
+
+### Links
+
+homepage: https://github.com/chadversary/vim-meson
+upstream: https://github.com/mesonbuild/meson
+
+### How to update vim-meson
+
+cd to a git checkout of vim-meson. Then run the 'pull-upstream' script. That's
+all.
+
+Example:
+
+    If you've checked out this meta branch, then there's no need for a separate
+    checkout for the master branch. The 'pull-upstream' script doesn't care
+    either way.
+
+
+    $ git checkout meta
+    $ ls
+    README
+    pull-upstream
+    ...
+    $ ./pull-upstream
+    $ git show --oneline

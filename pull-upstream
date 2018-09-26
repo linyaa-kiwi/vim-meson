@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -eu
+
+up_url='https://github.com/mesonbuild/meson'
+up_refname_desc="branch 'master'"
+up_refname='refs/heads/master'
+
+# Fetch the upstream ref to a local, persistent ref. This accelerates future
+# fetches.
+git fetch --no-tags "$up_url" "+${up_refname}:refs/vim-meson-rewrite/upstream/$up_refname"
+up_commit=$(git rev-parse --verify 'FETCH_HEAD^{commit}')
+
+# Rewrite the upstream history.
+#
+# WARNING: If you change the rewrite rules, you must change --state-branch.
+git checkout --quiet --detach FETCH_HEAD
+git filter-branch --force \
+                  --state-branch refs/vim-meson-rewrite/state-v1 \
+                  --subdirectory-filter data/syntax-highlighting/vim \
+                  --msg-filter 'cat && echo "(rewrite of commit $GIT_COMMIT)"'
+
+# Merge the rewritten upstream history.
+git checkout --quiet master
+git merge HEAD@{1} --allow-unrelated-histories -m "\
+Merge rewritten $up_refname_desc from upstream
+
+upstream-url: $up_url
+upstream-commit: $up_commit
+upstream-refname: $up_refname
+"
