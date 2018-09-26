@@ -7,6 +7,12 @@ history.
 If you want to pull updates directly from upstream Meson, then use the script
 in the 'meta' branch.
 
+## Overview
+
+ftdetect sets the filetype
+syntax does Meson syntax highlighting
+plugin does Meson indentation
+
 ## Installation (Vim >= 8.0)
 
 Clone this repo into Vim's 'packpath'. On Linux, assuming the default
