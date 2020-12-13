@@ -10,8 +10,9 @@ in the 'meta' branch.
 ## Overview
 
 ftdetect sets the filetype
+ftplugin sets Meson indentation rules
+indent does Meson indentation
 syntax does Meson syntax highlighting
-plugin does Meson indentation
 
 ## Installation (Vim >= 8.0)
 
